@@ -6,3 +6,5 @@ The following packages are required to run the code:
 - scipy
 - matplotlib
 - pandas
+- PyQt5
+- watchdog
