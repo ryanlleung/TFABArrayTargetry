@@ -13,8 +13,8 @@ The following packages are required to run the code:
 - watchdog
 
 ## Files
-kinematics.py - Kinematics of MATIAS
-stageviz.py - Applies kinematics to visualize transformations of points on system
-pitchyaw_corrector.ipynb - GUI tool to correct for pitch and yaw of target plate
-roll_corrector.ipynb - To correct for roll of target plate
-gonio_measurements.ipynb - Transform linear extensions to angles on goniometer
+kinematics.py - Kinematics of MATIAS<br>
+stageviz.py - Applies kinematics to visualize transformations of points on system<br>
+pitchyaw_corrector.ipynb - GUI tool to correct for pitch and yaw of target plate<br>
+roll_corrector.ipynb - To correct for roll of target plate<br>
+gonio_measurements.ipynb - Transform linear extensions to angles on goniometer<br>
