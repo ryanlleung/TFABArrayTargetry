@@ -65,20 +65,14 @@ surf = ax.plot_surface(X, Y, Z, visible=False)
 
 
 # Update the plot when the sliders are changed
-def update(setpoint='-20, 681.29, 0, 0, 0', TPx=0, TPy=0, demo=False):
+def update(setpoint='-20, 681.29, 0, 0, 0', TPx=0, TPy=0):
 
-    if not demo:
-        # Get values from sliders
-        TPx = slider_x.val
-        TPy = slider_y.val
+    # Get values from sliders
+    TPx = slider_x.val
+    TPy = slider_y.val
 
-        # Get values from textboxes
-        setpoint = np.array([float(x) for x in ax_setpointTB.text.split(',')])
-    else:
-        ax_setpointTB.set_val(setpoint)
-        slider_x.set_val(TPx)
-        slider_y.set_val(TPy)
-        setpoint = np.array([float(x) for x in setpoint.split(',')])
+    # Get values from textboxes
+    setpoint = np.array([float(x) for x in ax_setpointTB.text.split(',')])
 
     # Get the transformation matrix
     stagePos = get_stage_positions(setpoint, [TPx,TPy,0,0,0])
@@ -120,32 +114,16 @@ def reset(event):
     ax.view_init(elev=30,azim=-70)
     slider_x.reset()
     slider_y.reset()
-    ax_setpointTB.set_val('0, 523, 0, 0, 0')
+    ax_setpointTB.set_val('-20, 681.29, 0, 0, 0')
     return
 reset_button_ax = fig.add_axes([0.8, 0.15, 0.1, 0.05])
 reset_button = Button(reset_button_ax, 'Reset')
 reset_button.on_clicked(reset)
 
 
-demo = False
-
-if demo:
-    line = 0
-    for i in range(-85,95,10):
-        if line % 2 == 0:
-            for j in range(85,-95,-10):
-                update(setpoint='0, 523, 0, -2, 2', TPx=j, TPy=i, demo=True)
-                plt.pause(.1)
-        else:
-            for j in range(-95,85,10):
-                update(setpoint='0, 523, 0, -2, 2', TPx=j, TPy=i, demo=True)
-                plt.pause(.1)
-        line += 1
-else:
-    # Call the update function when sliders are changed
-    update() # Initialise the plot
-    slider_x.on_changed(update)
-    slider_y.on_changed(update)
-    ax_setpointTB.on_submit(update)
+update() # Initialise the plot
+slider_x.on_changed(update)
+slider_y.on_changed(update)
+ax_setpointTB.on_submit(update)
 
 plt.show()
